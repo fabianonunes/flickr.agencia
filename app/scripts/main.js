@@ -15,11 +15,10 @@ $('#input').on('keyup', function (evt) {
   }
 })
 
-var busca = function  (texto) {
+var busca = function (texto) {
   return api.search(texto)
   .then(function (photos) {
     var html = photos.map(templatePugPhoto)
     $('#photos').html(html.join(''))
   })
 }
-

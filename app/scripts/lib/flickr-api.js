@@ -1,14 +1,15 @@
-class FlickrApi {
+var $ = require('jquery')
 
-  constructor (api_key) {
-    this.api_key = api_key
+class FlickrApi {
+  constructor (apiKey) {
+    this.apiKey = apiKey
   }
 
   search (text) {
     return $.get({
       url: 'https://api.flickr.com/services/rest',
       data: {
-        api_key: this.api_key,
+        api_key: this.apiKey,
         method: 'flickr.photos.search',
         user_id: '49143546@N06',
         per_page: '100',
