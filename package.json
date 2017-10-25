@@ -19,6 +19,7 @@
   },
   "dependencies": {
     "bootstrap": "^3.3.5",
+    "jsonp": "^0.2.1",
     "senado.css": "agenciasenado/senado.css#2.11.0"
   }
 }
