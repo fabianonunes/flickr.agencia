@@ -1,8 +1,5 @@
 import preact from 'preact'
-
-var App = function (props) {
-  return <div>Olá, {props.nome}!</div>
-}
+import App from './app'
 
 preact.render(
   <App nome='Mundo' />,
