@@ -1,17 +1,13 @@
 import preact from 'preact'
 
-class App extends preact.Component {
+import Grid from './components/grid'
+import FlickrApi from './lib/flickr-api'
+
+export default class App extends preact.Component {
   constructor () {
     super()
-    this.state = {
-      tarefas: []
-    }
-  }
-
-  addTodo () {
-    this.setState({
-      tarefas: this.state.tarefas.concat([this.state.texto])
-    })
+    this.state = { photos: [] }
+    this.api = new FlickrApi('026d26f0c2e252ec152c416857ecd75c')
   }
 
   handleInput (evt) {
@@ -20,19 +16,24 @@ class App extends preact.Component {
     })
   }
 
+  async buscar () {
+    this.setState({ loading: true })
+    var photos = await this.api.search(this.state.texto)
+    this.setState({ loading: false })
+    this.setState({ photos })
+  }
+
   render (props, state) {
-    return <div class={state.valor}>
-      <input onInput={this.handleInput.bind(this)} type='text' />
-      <button onClick={this.addTodo.bind(this)}>+</button>
-      <Lista itens={state.tarefas || []} />
+    return <div>
+      { this.state.loading ? <div class='Loading' /> : null }
+      <form onSubmit={this.buscar.bind(this)} action='javascript:'>
+        <input onInput={this.handleInput.bind(this)} type='text' />
+        <button>Buscar</button>
+      </form>
+      <h3>
+        Foram encontradas {this.state.photos.length} fotos.
+      </h3>
+      <Grid photos={state.photos} />
     </div>
   }
 }
-
-const Lista = function (props) {
-  return <ul>
-    { props.itens.map(item => <li>{item}</li>) }
-  </ul>
-}
-
-export default App

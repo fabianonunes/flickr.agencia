@@ -1,7 +1,7 @@
 import preact from 'preact'
-import App from './app'
+import Mural from './app'
 
 preact.render(
-  <App nome='Mundo' />,
+  <Mural key='Mundo' />,
   document.getElementById('app')
 )
