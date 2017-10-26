@@ -7,13 +7,13 @@
     "build": "webpack -p"
   },
   "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
     "css-loader": "^0.28.7",
     "extract-text-webpack-plugin": "^3.0.1",
     "file-loader": "^1.1.5",
     "less": "^2.7.3",
     "less-loader": "^4.0.5",
-    "pug": "^2.0.0-rc.4",
-    "pug-loader": "^2.3.0",
     "standard": "^10.0.3",
     "webpack": "^3.8.1",
     "webpack-dev-server": "^2.9.3"

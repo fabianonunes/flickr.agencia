@@ -15,7 +15,7 @@ module.exports = {
   },
   module: {
     rules: [{
-      test: /\.pug$/, loader: 'pug-loader'
+      test: /\.js$/, loader: 'babel-loader'
     }, {
       test: /\.less$/,
       loader: Extractor.extract(['css-loader', 'less-loader'])
