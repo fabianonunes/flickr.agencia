@@ -11,7 +11,7 @@ class App extends preact.Component {
   decr () {
     var current = this.state.valor || 0
     this.setState({
-      valor: current + 1
+      valor: current - 1
     })
   }
 
