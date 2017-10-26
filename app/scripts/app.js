@@ -11,19 +11,20 @@ class App extends preact.Component {
   decr () {
     var current = this.state.valor || 0
     this.setState({
-      valor: current - 1
+      valor: current + 1
     })
   }
 
   render (props, state) {
     return <div class={state.valor}>
-      Olá, {props.nome}!
-      <br />
-      Você clicou {state.valor} vezes.
-      <br />
+        Olá, {props.nome}!
+        <br />
+        Você clicou {state.valor} vezes.
+        <br />
+      </div>
       <button onClick={this.incr.bind(this)}>+</button>
       <button onClick={this.decr.bind(this)}>-</button>
-    </div>
+    </p>
   }
 }
 
