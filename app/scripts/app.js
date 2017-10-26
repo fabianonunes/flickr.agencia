@@ -17,14 +17,13 @@ class App extends preact.Component {
 
   render (props, state) {
     return <div class={state.valor}>
-        Olá, {props.nome}!
-        <br />
-        Você clicou {state.valor} vezes.
-        <br />
-      </div>
+      Olá, {props.nome}!
+      <br />
+      Você clicou {state.valor} vezes.
+      <br />
       <button onClick={this.incr.bind(this)}>+</button>
       <button onClick={this.decr.bind(this)}>-</button>
-    </p>
+    </div>
   }
 }
 
