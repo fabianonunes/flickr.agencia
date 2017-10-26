@@ -1,10 +1,10 @@
 import preact from 'preact'
 
-var App = function () {
-  return <div>Olá!</div>
+var App = function (props) {
+  return <div>Olá, {props.nome}!</div>
 }
 
 preact.render(
-  <App />,
+  <App nome='Mundo' />,
   document.getElementById('app')
 )
