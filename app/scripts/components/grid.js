@@ -1,8 +1,5 @@
 import preact from 'preact'
 
-import '../../styles/components/card.less'
-import '../../styles/components/grid.less'
-
 var Grid = props => (
   <div class='Grid'>
     {props.photos.map(Card)}
