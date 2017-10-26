@@ -7,7 +7,8 @@ class FlickrApi {
 
   search (text) {
     return $.get({
-      url: 'https://api.flickr.com/services/rest',
+      // url: 'https://api.flickr.com/services/rest',
+      url: 'http://172.30.25.18:5000/flickr',
       data: {
         api_key: this.apiKey,
         method: 'flickr.photos.search',
