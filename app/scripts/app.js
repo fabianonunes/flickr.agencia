@@ -4,10 +4,10 @@ import Grid from './components/grid'
 import FlickrApi from './lib/flickr-api'
 
 export default class App extends preact.Component {
-  constructor () {
-    super()
+  constructor (props) {
+    super(props)
     this.state = { photos: [] }
-    this.api = new FlickrApi('026d26f0c2e252ec152c416857ecd75c')
+    this.api = new FlickrApi(props.key)
   }
 
   handleInput (evt) {
@@ -24,15 +24,22 @@ export default class App extends preact.Component {
   }
 
   render (props, state) {
+    var hidden = !this.state.loading ? 'is-hidden' : ''
     return <div>
-      { this.state.loading ? <div class='Loading' /> : null }
-      <form onSubmit={this.buscar.bind(this)} action='javascript:'>
-        <input onInput={this.handleInput.bind(this)} type='text' />
-        <button>Buscar</button>
+      <div class={`Loading ${hidden}`} />
+      <form onSubmit={this.buscar.bind(this)} class='form-inline' action='javascript:'>
+        <div class='input-group'>
+          <input class='form-control' onInput={this.handleInput.bind(this)} type='text' />
+          <span class='input-group-btn'>
+            <button class='btn btn-default' type='button'>Buscar</button>
+          </span>
+        </div>
       </form>
+
       <h3>
         Foram encontradas {this.state.photos.length} fotos.
       </h3>
+
       <Grid photos={state.photos} />
     </div>
   }
