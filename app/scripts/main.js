@@ -18,6 +18,10 @@ $('#input').on('keyup', function (evt) {
 var busca = function (texto) {
   return api.search(texto)
   .then(function (photos) {
+    console.log(photos[0])
+    console.log(
+      templatePugPhoto(photos[0])
+    )
     var html = photos.map(templatePugPhoto)
     $('#photos').html(html.join(''))
   })
