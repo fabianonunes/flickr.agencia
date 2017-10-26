@@ -1,30 +1,38 @@
 import preact from 'preact'
 
 class App extends preact.Component {
-  incr () {
-    var current = this.state.valor || 0
+  constructor () {
+    super()
+    this.state = {
+      tarefas: []
+    }
+  }
+
+  addTodo () {
     this.setState({
-      valor: current + 1
+      tarefas: this.state.tarefas.concat([this.state.texto])
     })
   }
 
-  decr () {
-    var current = this.state.valor || 0
+  handleInput (evt) {
     this.setState({
-      valor: current - 1
+      texto: evt.target.value
     })
   }
 
   render (props, state) {
     return <div class={state.valor}>
-      Olá, {props.nome}!
-      <br />
-      Você clicou {state.valor} vezes.
-      <br />
-      <button onClick={this.incr.bind(this)}>+</button>
-      <button onClick={this.decr.bind(this)}>-</button>
+      <input onInput={this.handleInput.bind(this)} type='text' />
+      <button onClick={this.addTodo.bind(this)}>+</button>
+      <Lista itens={state.tarefas || []} />
     </div>
   }
+}
+
+const Lista = function (props) {
+  return <ul>
+    { props.itens.map(item => <li>{item}</li>) }
+  </ul>
 }
 
 export default App
