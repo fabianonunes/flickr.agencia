@@ -1,24 +1,7 @@
-var $ = require('jquery')
-var FlickrApi = require('./lib/flickr-api')
+import preact from 'preact'
+import App from './app'
 
-var templatePugPhoto = require('./templates/photo.pug')
-
-var api = new FlickrApi('026d26f0c2e252ec152c416857ecd75c')
-var $loading = $('.Loading')
-
-$('#input').on('keyup', function (evt) {
-  if (evt.keyCode === 13) {
-    $loading.removeClass('is-hidden')
-    busca($('#input').val()).then(function () {
-      $loading.addClass('is-hidden')
-    })
-  }
-})
-
-var busca = function (texto) {
-  return api.search(texto)
-  .then(function (photos) {
-    var html = photos.map(templatePugPhoto)
-    $('#photos').html(html.join(''))
-  })
-}
+preact.render(
+  <App />,
+  document.getElementById('app')
+)

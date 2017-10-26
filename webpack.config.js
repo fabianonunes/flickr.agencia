@@ -1,41 +1,29 @@
 var path = require('path')
-var webpack = require('webpack')
 var Extractor = require('extract-text-webpack-plugin')
 
 module.exports = {
   entry: {
     'main': './app/scripts/main.js',
-    'styles': './app/styles/main.less',
+    'styles': './app/styles/main.less'
   },
   output: {
     path: path.resolve('./dist'),
     filename: '[name].js'
   },
   externals: {
-    jquery : 'jQuery'
+    jquery: 'jQuery'
   },
   module: {
     rules: [{
       test: /\.pug$/, loader: 'pug-loader'
     }, {
-      test: /\.less$/,
-      loader: Extractor.extract(['css-loader', 'less-loader'])
-    }, {
-      test: /\.(svg|woff|ttf|eot|woff2)$/,
-      loaders: ['file-loader?name=fonts/[name].[hash:base64:5].[ext]']
-    }]
-  },
-  plugins: [
-    new Extractor('[name].css')
-  ],  module: {
-    rules: [{
-      test: /\.pug$/, loader: 'pug-loader'
+      test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader'
     }, {
       test: /\.less$/,
       loader: Extractor.extract(['css-loader', 'less-loader'])
     }, {
       test: /\.(svg|woff|ttf|eot|woff2)$/,
-      loaders: ['file-loader?name=fonts/[name].[hash:base64:5].[ext]']
+      loader: 'file-loader?name=fonts/[name].[hash:base64:5].[ext]'
     }]
   },
   plugins: [
@@ -45,4 +33,4 @@ module.exports = {
     contentBase: path.resolve('./app'),
     publicPath: '/dist/'
   }
-};
+}

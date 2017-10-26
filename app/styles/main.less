@@ -7,22 +7,25 @@ body {
   background: #eee;
 }
 
-#photos {
+.Grid {
   column-count: 3;
   column-gap: 1px;
   font-size: 0;
-}
-
-#photos > *  {
-  margin-bottom: 1px;
+  position: relative;
 }
 
 .Card {
   width: 100%;
   display: inline-block;
+  margin-bottom: 1px;
+  position: relative;
 }
 
-.Caption {
+.Card > img {
+  width: 100%;
+}
+
+.Card-caption {
   position: absolute;
   bottom: 0;
   left: 0;
@@ -32,4 +35,3 @@ body {
   font-size: 14px;
   padding: 4px;
 }
-
