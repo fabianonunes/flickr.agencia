@@ -9,13 +9,18 @@ body {
 
 #photos {
   column-count: 3;
-  column-gap: 0;
+  column-gap: 1px;
+  font-size: 0;
 }
 
-#photos img  {
+#photos > *  {
   margin-bottom: 1px;
 }
 
+.Card {
+  width: 100%;
+  display: inline-block;
+}
 
 .Caption {
   position: absolute;
