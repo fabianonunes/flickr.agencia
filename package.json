@@ -23,6 +23,7 @@
     "bootstrap": "^3.3.5",
     "jsonp": "^0.2.1",
     "preact": "^8.2.6",
+    "query-string": "^5.0.1",
     "senado.css": "agenciasenado/senado.css#2.11.0"
   }
 }

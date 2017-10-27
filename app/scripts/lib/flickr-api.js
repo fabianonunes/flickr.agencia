@@ -1,32 +1,31 @@
-var $ = require('jquery')
+import jsonp from 'jsonp'
+import qs from 'query-string'
 
 class FlickrApi {
   constructor (apiKey) {
-    this.apiKey = apiKey
+    this.defaults = {
+      user_id: '49143546@N06',
+      per_page: '100',
+      extras: 'url_n,o_dims,description',
+      format: 'json',
+      api_key: apiKey
+    }
   }
 
   search (text) {
-    return $.get({
-      url: 'https://api.flickr.com/services/rest',
-      data: {
-        api_key: this.apiKey,
-        method: 'flickr.photos.search',
-        user_id: '49143546@N06',
-        per_page: '100',
-        extras: 'url_n,o_dims,description',
-        format: 'json',
-        text: text
-      }
-    })
-    .then(function (responseText) {
-      var r = eval(responseText)
-      return r ? r.photos.photo : []
+    return this.call({ method: 'flickr.photos.search', text })
+  }
+
+  call (opts) {
+    return new Promise((resolve, reject) => {
+      const query = qs.stringify(Object.assign({}, opts, this.defaults))
+      jsonp(
+        'https://api.flickr.com/services/rest?' + query,
+        { param: 'jsoncallback' },
+        (err, data) => err ? reject(err) : resolve(data.photos.photo)
+      )
     })
   }
 }
 
-var jsonFlickrApi = function (data) {
-  return data
-}
-
-module.exports = FlickrApi
+export default FlickrApi
